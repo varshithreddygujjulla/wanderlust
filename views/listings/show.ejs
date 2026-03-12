@@ -1,0 +1,39 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h3 class="mb-3">Listing Details</h3>
+    </div>
+
+    <div class="col-8 offset-2">
+      <div class="card show-card shadow-sm">
+        <img
+          src="<%= listing.image && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e' %>"
+          class="card-img-top"
+          alt="listing image"
+          style="height: 24rem; object-fit: cover;"
+        />
+
+        <div class="card-body">
+          <h4 class="card-title"><%= listing.title %></h4>
+          <p class="card-text"><%= listing.description %></p>
+          <p class="card-text">
+            <b>Price:</b> ₹ <%= listing.price.toLocaleString("en-IN") %> / night
+          </p>
+          <p class="card-text">
+            <b>Location:</b> <%= listing.location %>, <%= listing.country %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-8 offset-2 mt-3 d-flex gap-3">
+      <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a>
+
+      <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
